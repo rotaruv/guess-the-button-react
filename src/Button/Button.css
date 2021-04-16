@@ -1,0 +1,41 @@
+.generated {
+    appearance: none;
+    outline: 10;
+    background-color: white;
+    border: none;
+    margin: 20px 15px;
+    padding: 10px 10px;
+    color: #50a3a2;
+    border-radius: 3px;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+}
+
+.correct {
+    appearance: none;
+    outline: 10;
+    background-color: rgb(66, 240, 66);
+    border: none;
+    margin: 20px 15px;
+    padding: 10px 10px;
+    color: #50a3a2;
+    border-radius: 3px;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+}
+
+.incorrect {
+    appearance: none;
+    outline: 10;
+    background-color: red;
+    border: none;
+    margin: 20px 15px;
+    padding: 10px 10px;
+    color: #50a3a2;
+    border-radius: 3px;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+}
