@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "./Button/Button";
 import Input from "./Input/Input"
 
-function App() {
+const App = () => {
   
   const [counter, setCounter] = useState("")
   const [inputValue, setInputValue] = useState("")
