@@ -4,47 +4,57 @@ import Input from "./Input/Input"
 
 const App = () => {
   
-  const [counter, setCounter] = useState("")
+  /*
+  1.State for input change
+  2.State for the submit button (to grab the value from the input)
+  3.State for randomNumber
+  */
   const [inputValue, setInputValue] = useState("")
+  const [counter, setCounter] = useState("")
+  const [randomNumber, setRandomNumber] = useState(null)
 
   //Function to set the input value
   const inputValueHandler = (event) => {
       setInputValue(event.target.value)
   }
 
-  /*
-  Function to grab the value from the input when the submit button was clicked
-  Reset the input value to make the input box empty
-  */
-  const counterHandler = (event) => {
+  //Set the buttons number and the randonMumber after clicking the submit
+  //The randomNumber won't be changed on every page rendering in this case
+  const counterHandler = (e) => {
     setCounter(inputValue)
+    setRandomNumber(Math.floor(Math.random() * inputValue))
     setInputValue("")
-    event.preventDefault()
+    e.preventDefault()
   }
 
-  //Generate a random number depending on the input value
-  const randomNumber = Math.floor(Math.random() * counter)
+  // console.log("random " + randomNumber)
 
-  /*
-  Function which check if the clicked button coincide with the generated random number
-  Change the className depending on that (correct is they coincide, incorrect otherwise)
-  Reset the windows in 1s after the button was clicked
-  */
-  const buttonCheck = (event) => {
-    // eslint-disable-next-line
-    event.target.value == randomNumber ? event.target.className = "correct" : event.target.className = "incorrect"
-    setTimeout(() =>{ 
-      window.location.reload();; 
-    }, 1000);
+  //Change the style of the button depending on isWinning prop
+  const checkButton = (event) => {
+    if ( event.target.value === "true") {
+      event.target.className = "correct"
+    } else {
+      event.target.className = "incorrect"
+    }
   }
-
 
   //Push in an empty array the number of buttons equal with the input number
   const buttonsList = [];
   for(let i = 0; i < counter; i++) {
-    buttonsList.push(<Button onClick={buttonCheck} key={i} name={i}/>)
-  }
-
+    let winning = false;
+    if (i === randomNumber) {
+      winning = true
+    }
+    buttonsList.push(
+      <Button 
+        onClick={checkButton}
+        isWinning = {winning}
+        key = {i}
+        name = {i}> 
+      </Button>
+    )
+    }
+  
   return (
     <div className="container">
       <Input onClick={counterHandler} onChange={inputValueHandler} boxValue={inputValue}/>
